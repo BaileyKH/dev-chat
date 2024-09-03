@@ -1,3 +1,53 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+@font-face {
+  font-display: swap; 
+  font-family: 'Fira Code';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../fonts/fira-code-v22-latin-regular.woff2') format('woff2'); 
+}
+
+@font-face {
+  font-display: swap; 
+  font-family: 'Fira Code';
+  font-style: normal;
+  font-weight: 600;
+  src: url('../fonts/fira-code-v22-latin-600.woff2') format('woff2'); 
+}
+
+@font-face {
+  font-display: swap; 
+  font-family: 'Fira Code';
+  font-style: normal;
+  font-weight: 700;
+  src: url('../fonts/fira-code-v22-latin-700.woff2') format('woff2'); 
+}
+
+* {
+  @apply transition-colors duration-300
+}
+
+@layer base {
+  body {
+    @apply bg-primDark font-fira text-primDark dark:text-primLight scroll-smooth
+  }
+
+  .nav-gradient {
+    position: relative;
+    padding-bottom: 1px;
+  }
+
+  .nav-gradient::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 1px;
+    background: radial-gradient(circle, #7e00ff, #080011);
+  }
+}

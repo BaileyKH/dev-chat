@@ -5,7 +5,20 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        fira: ['"Fira Code"', 'monospace'],
+      },
+      colors: {
+        primLight: "#f8f8f8",
+        primDark: "#080011",
+        primAccent: "#7e00ff",
+        secAccent: "#ae60ff"
+      },
+    },
   },
   plugins: [],
+  darkMode: "class",
 }
+
+
