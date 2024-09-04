@@ -48,6 +48,10 @@
     right: 0;
     bottom: 0;
     height: 1px;
-    background: radial-gradient(circle, #7e00ff, #080011);
+    background: radial-gradient(circle, #7e00ff, #0a0a0a);
+  }
+
+  .hero-gradient {
+    background: radial-gradient(circle 800px at bottom, #7e00ff, #0a0a0a);
   }
 }

@@ -8,7 +8,7 @@ export const Nav = () => {
             </div>
             <div>
                 <ul>
-                    <li className="text-white"><Link to="/signin" className="bg-white/10 border border-primAccent px-4 py-2 rounded-sm tracking-wide">Sign in</Link></li>
+                    <li className="text-white"><Link to="/signin" className="border border-primAccent hover:bg-primAccent px-4 py-2 rounded-sm tracking-wide">Sign in</Link></li>
                 </ul>
             </div>
         </nav>
