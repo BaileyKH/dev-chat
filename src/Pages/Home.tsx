@@ -1,4 +1,9 @@
 import { useRef } from "react";
+import { cn } from "@/lib/utils";
+
+import BoxReveal from "@/components/magicui/box-reveal";
+import PulsatingButton from "@/components/magicui/pulsating-button.tsx";
+import DotPattern from "@/components/magicui/dot-pattern";
 
 import { motion } from "framer-motion"
 
@@ -8,13 +13,59 @@ export const Home = () => {
 
     return(
         <main>
-            <div ref={motionRef} className="flex justify-center items-center w-fulls mt-12 h-screen">
-                <div className="w-1/2 flex flex-col justify-start items-center">
-                    <motion.h1 whileInView={{y: [-500, 0]}} transition={{duration: 1.5}} className="text-9xl text-primLight font-bold">DevChat</motion.h1>
-                    <motion.p whileInView={{y: [400, 0]}} transition={{duration: 1.5}} className="text-primLight text-xl">The one stop shop for Communication and Collaboration</motion.p>
+            <section className="relative flex h-full w-full items-center justify-center overflow-hidden rounded-lg bg-background p-20 mt-6">
+                <div className="w-1/2 flex justify-center items-center">
+                    <div className="h-full w-full max-w-[32rem] items-center justify-center overflow-hidden pt-8">
+                        <BoxReveal boxColor={"#7e00ff"} duration={1}>
+                            <p className="text-[3.8rem] font-semibold">
+                            DevChat<span className="text-primAccent">.</span>
+                            </p>
+                        </BoxReveal>
+                    
+                        <BoxReveal boxColor={"#7e00ff"} duration={1}>
+                            <h2 className="mt-[.5rem] text-[1.3rem]">
+                            Communication and Collaboration for{" "}
+                            <span className="text-primAccent">Developers</span>
+                            </h2>
+                        </BoxReveal>
+                    
+                        <BoxReveal boxColor={"#7e00ff"} duration={1}>
+                            <div className="mt-[1.5rem]">
+                            <p>
+                                -&gt; 20+ free and open-source animated components built with
+                                <span className="font-semibold text-primAccent"> React</span>,
+                                <span className="font-semibold text-primAccent"> Typescript</span>,
+                                <span className="font-semibold text-primAccent"> Tailwind CSS</span>,
+                                and
+                                <span className="font-semibold text-primAccent"> Framer Motion</span>
+                                . <br />
+                                -&gt; 100% open-source, and customizable. <br />
+                            </p>
+                            </div>
+                        </BoxReveal>
+                    
+                        <BoxReveal boxColor={"#7e00ff"} duration={1}>
+                            <PulsatingButton 
+                                className="mt-[1.6rem] bg-primAccent dark:bg-primAccent mx-2 mb-2"
+                                duration="3s"
+                                pulseColor="#8000ff55"
+                                >Get Started
+                            </PulsatingButton>
+                        </BoxReveal>
+                    </div>
                 </div>
                 <div className="w-1/2"></div>
-            </div>
+                <DotPattern
+                    className={cn(
+                    "[mask-image:radial-gradient(300px_circle_at_center,white,transparent)]",
+                    )}
+                    width={20}
+                    height={20}
+                    cx={1}
+                    cy={1}
+                    cr={1}
+                />
+            </section>
         </main>
     );
 }
