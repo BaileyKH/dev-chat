@@ -2,11 +2,11 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 // import { AuthProvider } from "./Components/AuthContext"
-import { Layout } from "./Components/Layout";
+import { Layout } from "@/components/Layout.tsx";
 import { Home } from "./Pages/Home";
+import { SignIn } from './Pages/SignIn';
 
 function App() {
-  // const [darkMode, setDarkMode] = useState(false)
 
   return (
     <>
@@ -14,6 +14,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
+            <Route path="/login" element={<SignIn />}/>
           </Route>
         </Routes>
       </Router>

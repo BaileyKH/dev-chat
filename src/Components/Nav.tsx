@@ -14,7 +14,7 @@ export const Nav = () => {
     return(
         <nav className="nav-gradient dark:nav-gradient-dark flex items-center justify-between px-6">
             <div>
-                <p className="font-bold tracking-widest text-2xl">DevChat</p>
+                <Link to="/" className="font-bold tracking-widest text-2xl">DevChat</Link>
             </div>
             <div className="flex justify-center items-center my-4 space-x-4">
                 <DarkModeSwitch
@@ -34,7 +34,7 @@ export const Nav = () => {
                         colorTo="#ae60ff"
                         delay={0} 
                     />
-                    <Link to="/signin" className="px-4 py-2">Sign In</Link>
+                    <Link to="/login" className="px-4 py-2">Sign In</Link>
                 </div>
             </div>
         </nav>

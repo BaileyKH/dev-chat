@@ -1,15 +1,11 @@
-import { useRef } from "react";
 import { cn } from "@/lib/utils";
 
 import BoxReveal from "@/components/magicui/box-reveal";
 import PulsatingButton from "@/components/magicui/pulsating-button.tsx";
 import DotPattern from "@/components/magicui/dot-pattern";
 
-import { motion } from "framer-motion"
 
 export const Home = () => {
-
-    const motionRef = useRef(null);
 
     return(
         <main>
@@ -46,7 +42,7 @@ export const Home = () => {
                     
                         <BoxReveal boxColor={"#7e00ff"} duration={1}>
                             <PulsatingButton 
-                                className="mt-[1.6rem] bg-primAccent dark:bg-primAccent mx-2 mb-2"
+                                className="mt-[1.6rem] bg-primAccent dark:bg-primAccent text-primLight dark:text-primLight mx-2 mb-2"
                                 duration="3s"
                                 pulseColor="#8000ff55"
                                 >Get Started
