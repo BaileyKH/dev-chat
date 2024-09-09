@@ -34,7 +34,7 @@ export const Nav = () => {
                         colorTo="#ae60ff"
                         delay={0} 
                     />
-                    <Link to="/login" className="px-4 py-2">Sign In</Link>
+                    <Link to="/login" className="px-4 py-2">Log In</Link>
                 </div>
             </div>
         </nav>

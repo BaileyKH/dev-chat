@@ -1,8 +1,6 @@
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 
-import bg from '/src/assets/images/signin/signin:up.svg'
-
 import { DarkModeContext } from '@/components/Layout';
 
 export const SignIn = () => {
@@ -15,7 +13,7 @@ export const SignIn = () => {
                 <div className='flex justify-center items-center my-16'>
                     <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8 bg-primLight dark:bg-primDark backdrop-blur-md border-2 border-black/50 dark:border-white/50 rounded-md">
                         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-                            <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight">Sign in</h2>
+                            <h2 className="text-center text-2xl font-bold leading-9 tracking-tight">Welcome Back!</h2>
                         </div>
 
                         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
@@ -40,7 +38,7 @@ export const SignIn = () => {
                             </div>
 
                             <div>
-                                <button type="submit" className="flex w-full justify-center rounded-md bg-primAccent px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-secAccent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Sign in</button>
+                                <button type="submit" className="flex w-full justify-center rounded-md bg-primAccent px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-secAccent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Log In</button>
                             </div>
                             </form>
 
@@ -48,7 +46,7 @@ export const SignIn = () => {
                                 <p className="text-center text-sm text-primDark/85 dark:text-primLight/85">
                                 Don't have an account?
                                 </p>
-                                <Link to="/signup" className="font-semibold leading-6 text-primAccent hover:text-secAccent">Sign Up</Link>
+                                <Link to="/register" className="font-semibold leading-6 text-primAccent hover:text-secAccent">Sign Up</Link>
                             </div>
                         </div>
                     </div>
