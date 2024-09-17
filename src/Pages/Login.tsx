@@ -15,13 +15,27 @@ export const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [isSigningIn, setIsSigningIn] = useState(false);
-    // const [errorMessage, setErrorMessage] = useState('')
+    const [errorMessage, setErrorMessage] = useState('')
 
     const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
+        setErrorMessage("")
         if (!isSigningIn) {
             setIsSigningIn(true)
-            await signIn(email, password)
+            try {
+                await signIn(email, password)
+                setErrorMessage('')
+            } catch (err: any) {
+                if (err.code === 'auth/invalid-credential') {
+                    setErrorMessage('Incorrect Email or Password')
+                    setEmail('')
+                    setPassword('')
+                } else {
+                    setErrorMessage('An error occurred. Please try again later.')
+                }
+            } finally {
+                setIsSigningIn(false);
+            }
         }
     }
 
@@ -33,6 +47,7 @@ export const Login = () => {
                     <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8 bg-primLight dark:bg-primDark backdrop-blur-md border-2 border-black/50 dark:border-white/50 rounded-md">
                         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
                             <h2 className="text-center text-2xl font-bold leading-9 tracking-tight">Welcome Back!</h2>
+                            {errorMessage && <p className='text-red-600 text-xs text-center'>{errorMessage}</p>}
                         </div>
 
                         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
