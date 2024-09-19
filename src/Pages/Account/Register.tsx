@@ -14,15 +14,34 @@ export const Register = () => {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [userName, setUserName] = useState('');
     const [isRegistering, setIsRegistering] = useState(false);
-    // const [errorMessage, setErrorMessage] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
 
     const { userLoggedIn } = useAuth()
 
     const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
+        setErrorMessage('')
+
+        if (password !== confirmPassword){
+            setErrorMessage('Passwords do not match. Please try again')
+            return;
+        }
+
         if (!isRegistering) {
             setIsRegistering(true);
-            await createUser(email, password)
+            try {
+                await createUser(email, password)
+            } catch (err: any) {
+                if (err.code === 'auth/email-already-in-use') {
+                    setErrorMessage('This email address is already in use.')
+                    console.log(err)
+                } else {
+                    setErrorMessage('An error occurred during registration. Please try again.')
+                    console.log(err)
+                }
+            } finally {
+                setIsRegistering(false)
+            }
         }
     }
 
@@ -34,6 +53,7 @@ export const Register = () => {
                     <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8 bg-primLight dark:bg-primDark backdrop-blur-md border-2 border-black/50 dark:border-white/50 rounded-md">
                         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
                             <h2 className="text-center text-2xl font-bold leading-9 tracking-tight">Create an Account</h2>
+                            {errorMessage && <p className='text-red-600 text-xs text-center pt-1'>{errorMessage}</p>}
                         </div>
 
                         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">

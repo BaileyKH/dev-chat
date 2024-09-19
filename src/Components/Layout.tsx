@@ -4,6 +4,8 @@ import { Outlet } from "react-router-dom"
 import { Nav } from "./Nav"
 import { Footer } from "./Footer";
 
+import { Toaster } from "@/components/ui/toaster"
+
 interface DarkModeContextType {
     darkMode: boolean
     toggleDarkMode: () => void
@@ -39,6 +41,7 @@ export const Layout = () => {
         <DarkModeContext.Provider value={{ darkMode, toggleDarkMode }}>
             <Nav />
             <Outlet context={{ darkMode }}/>
+            <Toaster />
             <Footer />
         </DarkModeContext.Provider>
     );
