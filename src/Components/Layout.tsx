@@ -1,10 +1,11 @@
 import { createContext, useState, useEffect } from "react";
 
-import { Outlet } from "react-router-dom"
+import { ClerkProvider } from '@clerk/clerk-react'
+import { dark } from '@clerk/themes'
+
+import { Outlet, useNavigate } from "react-router-dom"
 import { Nav } from "./Nav"
 import { Footer } from "./Footer";
-
-import { Toaster } from "@/components/ui/toaster"
 
 interface DarkModeContextType {
     darkMode: boolean
@@ -18,10 +19,18 @@ const defaultDarkModeContext: DarkModeContextType = {
 
 export const DarkModeContext = createContext<DarkModeContextType>(defaultDarkModeContext);
 
+const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY
+
+if (!PUBLISHABLE_KEY) {
+  throw new Error('Missing Publishable Key')
+}
+
 export const Layout = () => {
 
     const initialDarkMode: boolean = localStorage.getItem('darkMode') === 'true';
     const [darkMode, setDarkMode] = useState(initialDarkMode)
+
+    const navigate = useNavigate()
 
     useEffect(() => {
         localStorage.setItem('darkMode', darkMode.toString())
@@ -38,11 +47,18 @@ export const Layout = () => {
     }
 
     return(
-        <DarkModeContext.Provider value={{ darkMode, toggleDarkMode }}>
-            <Nav />
-            <Outlet context={{ darkMode }}/>
-            <Toaster />
-            <Footer />
-        </DarkModeContext.Provider>
+        <ClerkProvider
+            routerPush={(to) => navigate(to)}
+            routerReplace={(to) => navigate(to, { replace: true })}
+            publishableKey={PUBLISHABLE_KEY}
+            appearance={{
+                baseTheme: darkMode ? dark : [],
+            }}>
+            <DarkModeContext.Provider value={{ darkMode, toggleDarkMode }}>
+                <Nav />
+                <Outlet context={{ darkMode }}/>
+                <Footer />
+            </DarkModeContext.Provider>
+        </ClerkProvider>
     );
 }

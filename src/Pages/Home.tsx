@@ -14,7 +14,7 @@ export const Home = () => {
                     <div className="h-full w-full max-w-[32rem] items-center justify-center overflow-hidden pt-8">
                         <BoxReveal boxColor={"#7e00ff"} duration={1}>
                             <p className="text-[3.8rem] font-semibold">
-                            DevChat<span className="text-primAccent">.</span>
+                            DevFusion<span className="text-primAccent">.</span>
                             </p>
                         </BoxReveal>
                     

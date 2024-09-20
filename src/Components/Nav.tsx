@@ -1,12 +1,20 @@
 import { useContext } from "react";
-import { Link, useNavigate } from "react-router-dom"
+import { Link } from "react-router-dom"
+import { SignedIn, SignedOut, UserButton } from '@clerk/clerk-react'
 
 import { DarkModeContext } from "./Layout";
-import { useAuth } from "@/contexts/authContext";
-import { signOut } from "@/firebase/auth";
 
 import { BorderBeam } from "@/components/magicui/border-beam.tsx";
 import { DarkModeSwitch } from 'react-toggle-dark-mode';
+
+
+const DotIcon = () => {
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor">
+        <path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512z" />
+      </svg>
+    )
+  }
 
 
 
@@ -14,14 +22,10 @@ export const Nav = () => {
 
     const { darkMode, toggleDarkMode } = useContext(DarkModeContext)
 
-    const { userLoggedIn } = useAuth()
-
-    const navigate = useNavigate()
-
     return(
         <nav className="nav-gradient dark:nav-gradient-dark flex items-center justify-between px-6">
             <div>
-                <Link to="/" className="font-bold tracking-widest text-2xl">DevChat</Link>
+                <Link to="/" className="font-bold tracking-widest text-2xl">DevFusion</Link>
             </div>
             <div className="flex justify-center items-center my-4 space-x-6">
                 <DarkModeSwitch
@@ -31,10 +35,7 @@ export const Nav = () => {
                     onChange={toggleDarkMode}
                     size={20}
                 />
-                <div>
-                    <Link to="/dashboard" className="tracking-wide hover:underline hover:underline-offset-4">Dashboard</Link>
-                </div>
-                <div className="relative w-max h-max p-3 rounded-md bg-primAccent/20">
+                <div className="relative flex justify-items-center w-max h-max p-3 rounded-md bg-primAccent/20">
                     <BorderBeam
                         size={60}
                         duration={4}
@@ -44,11 +45,22 @@ export const Nav = () => {
                         colorTo="#ae60ff"
                         delay={0} 
                     />
-                    {userLoggedIn ? 
-                        <button onClick={() => { signOut().then(() => { navigate('/') }) }} className="px-4 tracking-wide">Sign out</button>
-                        :
-                        <Link to="/login" className="px-4 py-2 tracking-wide">Sign in</Link>
-                    }
+                    <SignedIn>
+                        <UserButton>
+                            <UserButton.MenuItems>
+                                <UserButton.Link 
+                                    label="Dashboard"
+                                    labelIcon={<DotIcon />}
+                                    href="/dashboard"
+                                />
+                                <UserButton.Action label="manageAccount" />
+                                <UserButton.Action label="signOut" />
+                            </UserButton.MenuItems>
+                        </UserButton>
+                    </SignedIn>
+                    <SignedOut>
+                        <Link to="/sign-in">Sign In</Link>
+                    </SignedOut>
                 </div>
             </div>
         </nav>
